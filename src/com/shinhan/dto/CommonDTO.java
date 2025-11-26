@@ -2,6 +2,14 @@ package com.shinhan.dto;
 
 import java.sql.Date;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@ToString
+@Getter @Setter
+@NoArgsConstructor
 public class CommonDTO {
 	Integer user_id;
 	String user_name;
