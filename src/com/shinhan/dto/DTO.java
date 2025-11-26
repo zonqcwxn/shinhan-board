@@ -2,21 +2,29 @@ package com.shinhan.dto;
 
 import java.sql.Date;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@ToString
+@Getter @Setter
+@NoArgsConstructor
 public class DTO {
 
-	Integer USER_ID;
-    String USER_NAME;
-    String USER_PWD;
-    String USER_EMAIL;
-    Date USER_REGDATE;
-    String USER_ACTIVE;
+	Integer user_id;
+    String user_name;
+    String user_pwd;
+    String user_email;
+    Date user_regdate;
+    String user_active;
 
-    Integer POST_ID;
-    String POST_TITLE;
-    String POST_CONTENT;
-    Date POST_REGDATE;
-    Date POST_UDTDATE;
-    Integer POST_VIEW;
-    String POST_ACTIVE;
-    Integer POST_USER_ID;
+    Integer post_id;
+    String post_title;
+    String post_content;
+    Date post_regdate;
+    Date post_udtdate;
+    Integer post_view;
+    String post_active;
+    Integer post_user_id;
 }
