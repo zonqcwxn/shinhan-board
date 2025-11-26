@@ -3,13 +3,12 @@ package com.shinhan.service;
 import java.util.List;
 
 import com.shinhan.dao.DAO;
-import com.shinhan.dto.DTO;
 
 public class Service {
 	/*
 	 * public static List<DTO> userselectAll(){ return DAO.userselectAll(); }
 	 */
-	public static List<DTO> boardselectAll(){
+	public static List<BoardDTO> boardselectAll(){
 		return DAO.boardselectAll();
 	}
 

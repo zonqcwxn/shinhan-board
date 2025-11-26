@@ -24,18 +24,18 @@ public class DAO {
 	 * return dtolist; }
 	 */
 	//보드 테이블 전체 조회
-	public static List<DTO> boardselectAll() {
+	public static List<BoardDTO> boardselectAll() {
 		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		String sql = "select * from tbl_board";
-		List<DTO> dtolist = new ArrayList<DTO>();
+		List<BoardDTO> dtolist = new ArrayList<DTO>();
 		try {
 			conn = DBUtil.dbConnect();
 			st = conn.prepareStatement(sql);
 			rs = st.executeQuery();
 			while (rs.next()) {
-				DTO dto = makeboard(rs);
+				BoardDTO dto = makeboard(rs);
 				dtolist.add(dto);
 			}
 		} catch (SQLException e) {
@@ -60,7 +60,7 @@ public class DAO {
 	 * }
 	 */
 	//보드 ID로 조회
-	public static DTO selectboardId(int bId) {
+	public static BoardDTO selectboardId(int bId) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -68,7 +68,7 @@ public class DAO {
 				select * from tbl_board 
 				where board_user_id = ? and board_active = 'Y'
 				""";
-		DTO dto = null;
+		BoardDTO dto = null;
 		try {
 			conn = DBUtil.dbConnect();
 			st = conn.prepareStatement(sql);
@@ -99,7 +99,7 @@ public class DAO {
 	 * }finally { DBUtil.dbDisConnect(conn, st, null); } return result; }
 	 */
 	
-	public static int insertboard(DTO dto) {
+	public static int insertboard(BoardDTO dto) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = "insert into tbl_board(board_id, board_title, board_content, board_active, board_view) "
@@ -123,10 +123,10 @@ public class DAO {
 		return result;
 	}
 	
-	public static int updateboard(DTO dto) {
+	public static int updateboard(BoardDTO dto) {
 		Connection conn = null;
 		PreparedStatement st = null;
-		String sql = "update tbl_board set board_title = ?, board_content = ?, board_udtdate = SYSDATE from";
+		String sql = "update tbl_board set board_title = ?, board_content = ?, board_udtdate = SYSDATE from tbl_board where = ?";
 		int result = 0;
 		
 		
@@ -181,19 +181,18 @@ public class DAO {
 		return result;
 	}
 
-	private static DTO makeuser(ResultSet rs) throws SQLException {
-		DTO dto = new DTO();
-		dto.setUser_id(rs.getInt("user_id"));
-		dto.setUser_name(rs.getString("user_name"));
-		dto.setUser_pwd(rs.getString("user_pwd"));
-		dto.setUser_email(rs.getString("user_email"));
-		dto.setUser_regdate(rs.getDate("user_regdate"));
-		dto.setUser_active(rs.getString("user_active"));
-		return dto;
-	}
+	/*
+	 * private static DTO makeuser(ResultSet rs) throws SQLException { DTO dto = new
+	 * DTO(); dto.setUser_id(rs.getInt("user_id"));
+	 * dto.setUser_name(rs.getString("user_name"));
+	 * dto.setUser_pwd(rs.getString("user_pwd"));
+	 * dto.setUser_email(rs.getString("user_email"));
+	 * dto.setUser_regdate(rs.getDate("user_regdate"));
+	 * dto.setUser_active(rs.getString("user_active")); return dto; }
+	 */
 
-	private static DTO makeboard(ResultSet rs) throws SQLException {
-		DTO dto = new DTO();
+	private static BoardDTO makeboard(ResultSet rs) throws SQLException {
+		BoardDTO dto = new BoardDTO();
 		dto.setBoard_id(rs.getInt("board_id"));
 		dto.setBoard_user_id(rs.getInt("board_user_id"));
 		dto.setBoard_title(rs.getString("board_title"));
