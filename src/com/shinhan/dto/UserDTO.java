@@ -10,21 +10,12 @@ import lombok.ToString;
 @ToString
 @Getter @Setter
 @NoArgsConstructor
-public class DTO {
-
+public class UserDTO {
 	Integer user_id;
     String user_name;
     String user_pwd;
     String user_email;
     Date user_regdate;
     String user_active;
-
-    Integer board_id;
-    String board_title;
-    String board_content;
-    Date board_regdate;
-    Date board_udtdate;
-    Integer board_view;
-    String board_active;
-    Integer board_user_id;
+    String user_admin;
 }
