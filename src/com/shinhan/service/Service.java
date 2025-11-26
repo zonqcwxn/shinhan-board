@@ -3,6 +3,7 @@ package com.shinhan.service;
 import java.util.List;
 
 import com.shinhan.dao.DAO;
+import com.shinhan.dto.BoardDTO;
 
 public class Service {
 	/*

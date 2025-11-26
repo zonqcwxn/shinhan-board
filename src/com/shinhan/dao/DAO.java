@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.shinhan.dto.DTO;
+import com.shinhan.dto.BoardDTO;
 import com.shinhan.util.DBUtil;
 
 public class DAO {
@@ -29,7 +29,7 @@ public class DAO {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		String sql = "select * from tbl_board";
-		List<BoardDTO> dtolist = new ArrayList<DTO>();
+		List<BoardDTO> dtolist = new ArrayList<BoardDTO>();
 		try {
 			conn = DBUtil.dbConnect();
 			st = conn.prepareStatement(sql);
