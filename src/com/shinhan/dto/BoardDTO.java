@@ -11,7 +11,6 @@ import lombok.ToString;
 @Getter @Setter
 @NoArgsConstructor
 public class BoardDTO {
-
     Integer board_id;
     String board_title;
     String board_content;
