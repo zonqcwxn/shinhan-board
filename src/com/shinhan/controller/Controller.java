@@ -1,79 +1,51 @@
 package com.shinhan.controller;
 
-import java.util.Scanner;
-
 import com.shinhan.dao.DAO;
+import com.shinhan.util.IOUtil;
 
 public class Controller {
-
-    private final Scanner sc = new Scanner(System.in);
+    
     private final DAO dao = new DAO(); // JDBC DAO (앞에서 만든 insert/select/update/delete)
 
     public void start() {
         while (true) {
-            printMenu();
-            int menu = inputInt("메뉴 선택 >> ");
-
+            BoardView.menu();
+            int menu = IOUtil.inputInt("메뉴 선택 >> ");
             switch (menu) {
-                case 1 -> createBoardView();  // C
-                case 2 -> readBoardView();    // R
-                case 3 -> updateBoardView();  // U
-                case 4 -> deleteBoardView();  // D
+                case 1 -> createBoard();  // C
+                case 2 -> readBoard();    // R
+                case 3 -> updateBoard();  // U
+                case 4 -> deleteBoard();  // D
                 case 0 -> {
-                    System.out.println("프로그램을 종료합니다.");
+                    IOUtil.println("프로그램을 종료합니다.");
                     return;
                 }
-                default -> System.out.println("잘못된 메뉴입니다.");
+                default -> IOUtil.println("잘못된 메뉴입니다.");
             }
         }
     }
 
-    // ====== 공통 입력 메서드 ======
-    private int inputInt(String msg) {
-        System.out.print(msg);
-        while (!sc.hasNextInt()) {
-            System.out.println("숫자를 입력하세요.");
-            sc.next(); // 잘못된 입력 제거
-            System.out.print(msg);
-        }
-        int num = sc.nextInt();
-        sc.nextLine(); // 버퍼 비우기
-        return num;
-    }
-
-    private String inputString(String msg) {
-        System.out.print(msg);
-        return sc.nextLine();
-    }
-
-    private void printMenu() {
-        System.out.println();
-        System.out.println("===== 게시판 CRUD =====");
-        System.out.println("1. 글 등록 (Create)");
-        System.out.println("2. 글 조회 (Read)");
-        System.out.println("3. 글 수정 (Update)");
-        System.out.println("4. 글 삭제 (Delete)");
-        System.out.println("0. 종료");
-        System.out.println("=======================");
-    }
-
     // ====== C : 글 등록 ======
-    private void createBoardView() {
+    // >> 등록 화면
+    private void createBoard() {
         
     }
 
-    // ====== R : 글 조회 (id로 단건 조회) ======
-    private void readBoardView() {
+    // ====== R : 글 조회 ======
+    // >> 전체 리스트(제목, 작성자) >> 상세 내용
+    private void readBoard() {
         
     }
 
     // ====== U : 글 수정 ======
-    private void updateBoardView() {
+    // >> 전체 리스트 >> 인덱스 번호 선택
+    private void updateBoard() {
         
     }
 
     // ====== D : 글 삭제 ======
-    private void deleteBoardView() {
+    // >> 전체 리스트 >> 상세 내용 >> 삭제
+    private void deleteBoard() {
         
     }
 
