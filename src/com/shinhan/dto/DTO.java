@@ -19,12 +19,12 @@ public class DTO {
     Date user_regdate;
     String user_active;
 
-    Integer post_id;
-    String post_title;
-    String post_content;
-    Date post_regdate;
-    Date post_udtdate;
-    Integer post_view;
-    String post_active;
-    Integer post_user_id;
+    Integer board_id;
+    String board_title;
+    String board_content;
+    Date board_regdate;
+    Date board_udtdate;
+    Integer board_view;
+    String board_active;
+    Integer board_user_id;
 }
