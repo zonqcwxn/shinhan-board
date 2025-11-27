@@ -7,6 +7,7 @@ import com.shinhan.dao.DAO;
 import com.shinhan.dto.BoardDTO;
 import com.shinhan.dto.CommonDTO;
 import com.shinhan.service.Service;
+import com.shinhan.util.DBUtil;
 import com.shinhan.util.IOUtil;
 
 public class Controller {
@@ -185,7 +186,7 @@ public class Controller {
             IOUtil.println("삭제 실패! 이미 삭제된 글일 수 있습니다.");
         }
     }
-//
+      
     // 실행용 main
     public static void main(String[] args) {
         new Controller().start();
