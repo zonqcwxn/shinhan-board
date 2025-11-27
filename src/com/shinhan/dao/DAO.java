@@ -11,7 +11,7 @@ import com.shinhan.dto.BoardDTO;
 import com.shinhan.util.DBUtil;
 
 public class DAO {
-	
+
 //	sql 작성 예시
 //	String sql = """
 //			UPDATE 
@@ -35,15 +35,15 @@ public class DAO {
 	 * 
 	 * return dtolist; }
 	 */
-	//보드 테이블 전체 조회
+	// 보드 테이블 전체 조회
 	public static List<BoardDTO> boardselectAll() {
 		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		String sql = """
-				select 
-					* 
-				from 
+				select
+					*
+				from
 					tbl_board
 				""";
 		List<BoardDTO> dtoList = new ArrayList<BoardDTO>();
@@ -68,11 +68,11 @@ public class DAO {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		String sql = """
-				select 
-					* 
-				from 
+				select
+					*
+				from
 					tbl_board
-				where board_user_id = ? 
+				where board_user_id = ?
 				and board_active = 'Y'
 				""";
 		BoardDTO Dto = null;
@@ -97,21 +97,21 @@ public class DAO {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = """
-				INSERT INTO 
+				INSERT INTO
 					tbl_board
 				(
-				board_id, 
-				board_title, 
-				board_content, 
-				board_active, 
-				board_view, 
-				board_regdate, 
-				board_udtdate, 
+				board_id,
+				board_title,
+				board_content,
+				board_active,
+				board_view,
+				board_regdate,
+				board_udtdate,
 				board_user_id)
-				VALUES 
-				(seq_board_id.NEXTVAL, 
-				?, ?, 
-				'Y', 0, 
+				VALUES
+				(seq_board_id.NEXTVAL,
+				?, ?,
+				'Y', 0,
 				SYSDATE, SYSDATE, ?)
 				""";
 
@@ -136,12 +136,12 @@ public class DAO {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = """
-				update 
-					tbl_board 
-				set 
-					board_title = ?, 
-					board_content = ?, 
-					board_udtdate = SYSDATE 
+				update
+					tbl_board
+				set
+					board_title = ?,
+					board_content = ?,
+					board_udtdate = SYSDATE
 				where board_user_id = ?
 				""";
 		int result = 0;
@@ -166,12 +166,12 @@ public class DAO {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = """
-				update 
-					tbl_board 
-				set 
-					board_active = 'N', 
-					board_udtdate=SYSDATE  
-				where board_id = ? 
+				update
+					tbl_board
+				set
+					board_active = 'N',
+					board_udtdate=SYSDATE
+				where board_id = ?
 				and board_active = 'Y'
 				""";
 		int result = 0;
