@@ -36,7 +36,7 @@ public class DAO {
 	 * return dtolist; }
 	 */
 	//보드 테이블 전체 조회
-	public static List<BoardDTO> boardselectAll() {
+	public static List<BoardDTO> selectBoardAll() {
 		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -47,7 +47,7 @@ public class DAO {
 			st = conn.prepareStatement(sql);
 			rs = st.executeQuery();
 			while (rs.next()) {
-				BoardDTO dto = makeboard(rs);
+				BoardDTO dto = makeBoard(rs);
 				dtolist.add(dto);
 			}
 		} catch (SQLException e) {
@@ -59,7 +59,7 @@ public class DAO {
 	}
 
 	// 蹂대�� ID濡� 議고��
-	public static BoardDTO selectboardId(int bId) {
+	public static BoardDTO selectBoardId(int bId) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -74,7 +74,7 @@ public class DAO {
 			st.setInt(1, bId);
 			rs = st.executeQuery();
 			if (rs.next()) {
-				dto = makeboard(rs);
+				dto = makeBoard(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -85,7 +85,7 @@ public class DAO {
 
 	}
 
-	public static int insertboard(BoardDTO dto) {
+	public static int insertBoard(BoardDTO dto) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = """
@@ -111,7 +111,7 @@ public class DAO {
 		return result;
 	}
 
-	public static int updateboard(BoardDTO dto) {
+	public static int updateBoard(BoardDTO dto) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = "update tbl_board set board_title = ?, board_content = ?, board_udtdate = SYSDATE where board_id = ?";
@@ -133,7 +133,7 @@ public class DAO {
 		return result;
 	}
 
-	public static int deleteboard(int board_id) {
+	public static int deleteBoard(int board_id) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = "update tbl_board set board_active = 'N', board_udtdate=SYSDATE  where board_id = ? and board_active = 'Y'";
@@ -154,7 +154,7 @@ public class DAO {
 		return result;
 	}
 
-	private static BoardDTO makeboard(ResultSet rs) throws SQLException {
+	private static BoardDTO makeBoard(ResultSet rs) throws SQLException {
 		BoardDTO dto = new BoardDTO();
 		dto.setBoard_id(rs.getInt("board_id"));
 		dto.setBoard_user_id(rs.getInt("board_user_id"));
