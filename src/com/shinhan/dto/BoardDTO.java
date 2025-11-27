@@ -11,12 +11,12 @@ import lombok.ToString;
 @Getter @Setter
 @NoArgsConstructor
 public class BoardDTO {
-    Integer board_id;
-    String board_title;
-    String board_content;
-    Date board_regdate;
-    Date board_udtdate;
-    Integer board_view;
-    String board_active;
-    Integer board_user_id;
+    private Integer board_id;
+    private String board_title;
+    private String board_content;
+    private Date board_regdate;
+    private Date board_udtdate;
+    private Integer board_view;
+    private String board_active;
+    private Integer board_user_id;
 }
