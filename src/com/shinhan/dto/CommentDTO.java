@@ -11,11 +11,12 @@ import lombok.ToString;
 @Getter @Setter
 @NoArgsConstructor
 public class CommentDTO {
-	Integer comment_id;
-	String comment_content;
-    Date comment_regdate;
-    Date comment_udpdate;
-    String comment_active;
-    Integer comment_user_id;
-    Integer comment_board_id;
+	private Integer comment_id;
+	private String comment_content;
+    private Date comment_regdate;
+    private Date comment_udpdate;
+    private String comment_active;
+    private Integer comment_user_id;
+    private Integer comment_board_id;
+    private Integer test;
 }
