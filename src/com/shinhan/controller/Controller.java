@@ -1,9 +1,11 @@
 package com.shinhan.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.shinhan.dao.DAO;
 import com.shinhan.dto.BoardDTO;
+import com.shinhan.dto.CommonDTO;
 import com.shinhan.service.Service;
 import com.shinhan.util.IOUtil;
 
@@ -44,7 +46,7 @@ public class Controller {
     	    dto.setBoard_content(content);
     	    dto.setBoard_user_id(userId);
 
-    	    int result = dao.insertboard(dto);
+    	    int result = dao.insertBoard(dto);
 
     	    if (result > 0) {
     	        IOUtil.println("글이 성공적으로 등록되었습니다.");
@@ -58,13 +60,13 @@ public class Controller {
     // >> 전체 리스트(제목, 작성자) >> 상세 내용
     private void f_selectList() {
     	List<CommonDTO> boardList = new ArrayList<CommonDTO>();
-        if (list.isEmpty()) {
+        if (boardList.isEmpty()) {
             IOUtil.println("등록된 글이 없습니다.");
             return;
         }
 
         // 전체 리스트 출력
-        for (BoardDTO b : list) {
+        for (BoardDTO b : boardList) {
             IOUtil.println("ID: " + b.getBoard_id()
                     + " | 제목: " + b.getBoard_title()
                     + " | 작성자: " + b.getBoard_user_id());
@@ -72,7 +74,7 @@ public class Controller {
 
         int id = IOUtil.inputInt("상세조회할 글 ID 입력 >> ");
 
-        BoardDTO dto = Service.selectboardId(id);
+        BoardDTO dto = Service.selectBoardId(id);
 
         if (dto == null) {
             IOUtil.println("해당 글을 찾을 수 없습니다.");
@@ -99,7 +101,7 @@ public class Controller {
     private void f_update() {
     	 IOUtil.println("=== 글 수정 ===");
 
-    	    List<BoardDTO> list = Service.boardselectAll();
+    	    List<BoardDTO> list = Service.selectBoardAll();
 
     	    if (list.isEmpty()) {
     	        IOUtil.println("등록된 글이 없습니다.");
@@ -115,7 +117,7 @@ public class Controller {
 
     	    int id = IOUtil.inputInt("수정할 글 ID 입력 >> ");
 
-    	    BoardDTO old = Service.selectboardId(id);
+    	    BoardDTO old = Service.selectBoardId(id);
 
     	    if (old == null) {
     	        IOUtil.println("해당 글을 찾을 수 없습니다.");
@@ -131,7 +133,7 @@ public class Controller {
     	    newDto.setBoard_title(newTitle);
     	    newDto.setBoard_content(newContent);
 
-    	    int result = Service.updateboard(newDto);
+    	    int result = Service.updateBoard(newDto);
 
     	    if (result > 0) {
     	        IOUtil.println("글이 성공적으로 수정되었습니다.");
@@ -146,7 +148,7 @@ public class Controller {
     private void f_delete() {
     	IOUtil.println("=== 글 삭제 ===");
 
-        List<BoardDTO> list = Service.boardselectAll();
+        List<BoardDTO> list = Service.selectBoardAll();
 
         if (list.isEmpty()) {
             IOUtil.println("등록된 글이 없습니다.");
@@ -162,7 +164,7 @@ public class Controller {
 
         int id = IOUtil.inputInt("삭제할 글 ID 입력 >> ");
 
-        BoardDTO dto = Service.selectboardId(id);
+        BoardDTO dto = Service.selectBoardId(id);
         if (dto == null) {
             IOUtil.println("해당 글을 찾을 수 없습니다.");
             return;
@@ -175,7 +177,7 @@ public class Controller {
             return;
         }
 
-        int result = Service.deleteboard(id);
+        int result = Service.deleteBoard(id);
 
         if (result > 0) {
             IOUtil.println("글이 삭제되었습니다.(비활성 처리)");
