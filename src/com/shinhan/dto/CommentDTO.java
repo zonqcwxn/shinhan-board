@@ -18,4 +18,5 @@ public class CommentDTO {
     String comment_active;
     Integer comment_user_id;
     Integer comment_board_id;
+    Integer d;
 }
