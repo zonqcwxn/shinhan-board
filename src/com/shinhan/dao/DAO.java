@@ -44,7 +44,7 @@ public class DAO {
 				select 
 					* 
 				from 
-					tbl_board"
+					tbl_board
 				""";
 		List<BoardDTO> dtoList = new ArrayList<BoardDTO>();
 		try {
@@ -109,7 +109,7 @@ public class DAO {
 				board_udtdate, 
 				board_user_id)
 				VALUES 
-				(board_seq.NEXTVAL, 
+				(seq_board_id.NEXTVAL, 
 				?, ?, 
 				'Y', 0, 
 				SYSDATE, SYSDATE, ?)
@@ -142,7 +142,7 @@ public class DAO {
 					board_title = ?, 
 					board_content = ?, 
 					board_udtdate = SYSDATE 
-				where board_user_id = ?"
+				where board_user_id = ?
 				""";
 		int result = 0;
 
@@ -172,7 +172,7 @@ public class DAO {
 					board_active = 'N', 
 					board_udtdate=SYSDATE  
 				where board_id = ? 
-				and board_active = 'Y'"
+				and board_active = 'Y'
 				""";
 		int result = 0;
 
