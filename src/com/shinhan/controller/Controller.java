@@ -1,10 +1,14 @@
 package com.shinhan.controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import com.shinhan.dao.DAO;
 import com.shinhan.dto.BoardDTO;
 import com.shinhan.service.Service;
+import com.shinhan.util.DBUtil;
 import com.shinhan.util.IOUtil;
 
 public class Controller {
@@ -179,7 +183,29 @@ public class Controller {
         }
     }
 
-    // 실행용 main
+    public int updateBoard(BoardDTO dto) {
+		Connection conn = null;
+		PreparedStatement st = null;
+		String sql = "update tbl_board set board_title = ?, board_content = ?, board_udtdate = SYSDATE where board_id = ?";
+		int result = 0;
+	
+		try {
+			conn = DBUtil.dbConnect();
+			st = conn.prepareStatement(sql);
+			st.setString(1, dto.getBoard_title());
+			st.setString(2, dto.getBoard_content());
+			st.setInt(3, dto.getBoard_user_id());
+	
+			result = st.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisConnect(conn, st, null);
+		}
+		return result;
+	}
+
+	// 실행용 main
     public static void main(String[] args) {
         new Controller().start();
     }
