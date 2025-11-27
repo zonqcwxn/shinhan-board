@@ -23,20 +23,8 @@ public class DAO {
 //			AND BOARD_ACTIVE ='Y'
 //			""";
 
-	// 유저 테이블 전체 조회
-	/*
-	 * public z List<DTO> userselectAll() { Connection conn = null;
-	 * PreparedStatement st = null; ResultSet rs = null; String sql =
-	 * "select * from tbl_user"; List<DTO> dtolist = new ArrayList<DTO>(); try {
-	 * conn = DBUtil.dbConnect(); st = conn.prepareStatement(sql); rs =
-	 * st.executeQuery(); while (rs.next()) { DTO dto = makeuser(rs);
-	 * dtolist.add(dto); } } catch (SQLException e) { // TODO Auto-generated catch
-	 * block e.printStackTrace(); } finally { DBUtil.dbDisConnect(conn, st, rs); }
-	 * 
-	 * return dtolist; }
-	 */
 	//보드 테이블 전체 조회
-	public static List<BoardDTO> selectBoardAll() {
+	public List<BoardDTO> selectBoardAll() {
 		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -64,7 +52,7 @@ public class DAO {
 	}
 
 	// 蹂대�� ID濡� 議고��
-	public static BoardDTO selectBoardId(int bId) {
+	public BoardDTO selectBoardId(int bId) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -76,25 +64,24 @@ public class DAO {
 				where board_user_id = ? 
 				and board_active = 'Y'
 				""";
-		BoardDTO Dto = null;
+		BoardDTO boardDTO = null;
 		try {
 			conn = DBUtil.dbConnect();
 			st = conn.prepareStatement(sql);
 			st.setInt(1, bId);
 			rs = st.executeQuery();
 			if (rs.next()) {
-				dto = makeBoard(rs);
+				boardDTO = makeBoard(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbDisConnect(conn, st, rs);
 		}
-		return Dto;
-
+		return boardDTO;
 	}
 
-	public static int insertBoard(BoardDTO dto) {
+	public int insertBoard(BoardDTO dto) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = """
@@ -133,7 +120,7 @@ public class DAO {
 		return result;
 	}
 
-	public static int updateBoard(BoardDTO dto) {
+	public int updateBoard(BoardDTO dto) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = """
@@ -163,7 +150,7 @@ public class DAO {
 		return result;
 	}
 
-	public static int deleteBoard(int board_id) {
+	public int deleteBoard(int board_id) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = """
@@ -192,7 +179,7 @@ public class DAO {
 		return result;
 	}
 
-	private static BoardDTO makeBoard(ResultSet rs) throws SQLException {
+	private BoardDTO makeBoard(ResultSet rs) throws SQLException {
 		BoardDTO dto = new BoardDTO();
 		dto.setBoard_id(rs.getInt("board_id"));
 		dto.setBoard_user_id(rs.getInt("board_user_id"));
