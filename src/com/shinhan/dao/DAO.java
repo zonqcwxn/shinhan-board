@@ -25,7 +25,7 @@ public class DAO {
 
 	// 유저 테이블 전체 조회
 	/*
-	 * public static List<DTO> userselectAll() { Connection conn = null;
+	 * public z List<DTO> userselectAll() { Connection conn = null;
 	 * PreparedStatement st = null; ResultSet rs = null; String sql =
 	 * "select * from tbl_user"; List<DTO> dtolist = new ArrayList<DTO>(); try {
 	 * conn = DBUtil.dbConnect(); st = conn.prepareStatement(sql); rs =
@@ -40,48 +40,56 @@ public class DAO {
 		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
-		String sql = "select * from tbl_board";
-		List<BoardDTO> dtolist = new ArrayList<BoardDTO>();
+		String sql = """
+				select 
+					* 
+				from 
+					tbl_board"
+				""";
+		List<BoardDTO> dtoList = new ArrayList<BoardDTO>();
 		try {
 			conn = DBUtil.dbConnect();
 			st = conn.prepareStatement(sql);
 			rs = st.executeQuery();
 			while (rs.next()) {
-				BoardDTO dto = makeboard(rs);
-				dtolist.add(dto);
+				BoardDTO dto = makeBoard(rs);
+				dtoList.add(dto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbDisConnect(conn, st, rs);
 		}
-		return dtolist;
+		return dtoList;
 	}
 
-	// 蹂대�� ID濡� 議고��
 	public static BoardDTO selectboardId(int bId) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		String sql = """
-				select * from tbl_board
-				where board_user_id = ? and board_active = 'Y'
+				select 
+					* 
+				from 
+					tbl_board
+				where board_user_id = ? 
+				and board_active = 'Y'
 				""";
-		BoardDTO dto = null;
+		BoardDTO Dto = null;
 		try {
 			conn = DBUtil.dbConnect();
 			st = conn.prepareStatement(sql);
 			st.setInt(1, bId);
 			rs = st.executeQuery();
 			if (rs.next()) {
-				dto = makeboard(rs);
+				Dto = makeBoard(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbDisConnect(conn, st, rs);
 		}
-		return dto;
+		return Dto;
 
 	}
 
@@ -89,9 +97,22 @@ public class DAO {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = """
-				INSERT INTO tbl_board
-				(board_id, board_title, board_content, board_active, board_view, board_regdate, board_udtdate, board_user_id)
-				VALUES (board_seq.NEXTVAL, ?, ?, 'Y', 0, SYSDATE, SYSDATE, ?)
+				INSERT INTO 
+					tbl_board
+				(
+				board_id, 
+				board_title, 
+				board_content, 
+				board_active, 
+				board_view, 
+				board_regdate, 
+				board_udtdate, 
+				board_user_id)
+				VALUES 
+				(board_seq.NEXTVAL, 
+				?, ?, 
+				'Y', 0, 
+				SYSDATE, SYSDATE, ?)
 				""";
 
 		int result = 0;
@@ -114,7 +135,15 @@ public class DAO {
 	public static int updateboard(BoardDTO dto) {
 		Connection conn = null;
 		PreparedStatement st = null;
-		String sql = "update tbl_board set board_title = ?, board_content = ?, board_udtdate = SYSDATE where board_id = ?";
+		String sql = """
+				update 
+					tbl_board 
+				set 
+					board_title = ?, 
+					board_content = ?, 
+					board_udtdate = SYSDATE 
+				where board_user_id = ?"
+				""";
 		int result = 0;
 
 		try {
@@ -136,7 +165,15 @@ public class DAO {
 	public static int deleteboard(int board_id) {
 		Connection conn = null;
 		PreparedStatement st = null;
-		String sql = "update tbl_board set board_active = 'N', board_udtdate=SYSDATE  where board_id = ? and board_active = 'Y'";
+		String sql = """
+				update 
+					tbl_board 
+				set 
+					board_active = 'N', 
+					board_udtdate=SYSDATE  
+				where board_id = ? 
+				and board_active = 'Y'"
+				""";
 		int result = 0;
 
 		try {
@@ -154,7 +191,7 @@ public class DAO {
 		return result;
 	}
 
-	private static BoardDTO makeboard(ResultSet rs) throws SQLException {
+	private static BoardDTO makeBoard(ResultSet rs) throws SQLException {
 		BoardDTO dto = new BoardDTO();
 		dto.setBoard_id(rs.getInt("board_id"));
 		dto.setBoard_user_id(rs.getInt("board_user_id"));
