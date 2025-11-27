@@ -61,7 +61,7 @@ public class Controller {
     // ====== R : 글 목록 조회 ======
     // >> 전체 리스트(제목, 작성자) >> 상세 내용
     private void f_selectList() {
-    	List<CommonDTO> boardList = new ArrayList<CommonDTO>();
+    	List<CommonDTO> boardList = service.selectBoardAll2();
         if (boardList.isEmpty()) {
             IOUtil.println("등록된 글이 없습니다.");
             return;
@@ -71,12 +71,18 @@ public class Controller {
         for (CommonDTO b : boardList) {
             IOUtil.println("ID: " + b.getBoard_id()
                     + " | 제목: " + b.getBoard_title()
-                    + " | 작성자: " + b.getBoard_user_id());
+                    + " | 작성자: " + b.getUser_name());
         }
+        f_select();
+        
+    }
+  
+     // ====== R : 글 상세 조회 ======
+    // >> 전체 리스트(제목, 작성자) >> 상세 내용
+    private void f_select() {
+    	int id = IOUtil.inputInt("상세조회할 글 ID 입력 >> ");
 
-        int id = IOUtil.inputInt("상세조회할 글 ID 입력 >> ");
-
-        BoardDTO dto = service.selectBoardId(id);
+        CommonDTO dto = service.selectboardId2(id);
 
         if (dto == null) {
             IOUtil.println("해당 글을 찾을 수 없습니다.");
@@ -85,18 +91,10 @@ public class Controller {
 
         // 상세 내용 출력
         IOUtil.println("=== 글 상세 ===");
-        IOUtil.println("번호: " + dto.getBoard_id());
         IOUtil.println("제목: " + dto.getBoard_title());
         IOUtil.println("내용: " + dto.getBoard_content());
-        IOUtil.println("작성자: " + dto.getBoard_user_id());
-        IOUtil.println("작성일: " + dto.getBoard_regdate());
+        IOUtil.println("작성자: " + dto.getUser_name());
         IOUtil.println("수정일: " + dto.getBoard_udtdate());
-    }
-  
-     // ====== R : 글 상세 조회 ======
-    // >> 전체 리스트(제목, 작성자) >> 상세 내용
-    private void f_select() {
-    	List<CommonDTO> boardList = new ArrayList<CommonDTO>();
     }
 
     // ====== U : 글 수정 ======
@@ -132,7 +130,7 @@ public class Controller {
     	    String newContent = IOUtil.inputString("새 내용 입력 >> ");
 
     	    BoardDTO newDto = new BoardDTO();
-    	    newDto.setBoard_user_id(id);   // update 조건이 board_user_id 사용 중!!
+    	    newDto.setBoard_id(id); 
     	    newDto.setBoard_title(newTitle);
     	    newDto.setBoard_content(newContent);
 
@@ -190,7 +188,7 @@ public class Controller {
     }
       
     // 실행용 main
-    public void main(String[] args) {
+    public static void main(String[] args) {
         new Controller().start();
     }
 }

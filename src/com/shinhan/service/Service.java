@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.shinhan.dao.DAO;
 import com.shinhan.dto.BoardDTO;
+import com.shinhan.dto.CommonDTO;
 
 public class Service {
 	
@@ -21,6 +22,10 @@ public class Service {
 	public List<BoardDTO> selectBoardAll(){
 		return dao.selectBoardAll();
 	}
+	public List<CommonDTO> selectBoardAll2(){
+		return dao.selectBoardAll2();
+	}
+
 
 	//보드 상세 조회
 	public BoardDTO selectBoardId(int board_id){
@@ -35,5 +40,8 @@ public class Service {
 	//보드 수정
 	public int updateBoard(BoardDTO board_id) {
 		return dao.updateBoard(board_id);
+	}
+	public CommonDTO selectboardId2(int board_id) {
+		return dao.selectBoardId2(board_id);
 	}
 }
