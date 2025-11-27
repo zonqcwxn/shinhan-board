@@ -15,20 +15,23 @@ public class Service {
 	 * public static List<DTO> userselectAll(){ return DAO.userselectAll(); }
 	 */
 	
-	//리스트 조회
-	public static List<BoardDTO> selectBoardAll(){
+	//보드 리스트 조회
+	public List<BoardDTO> selectBoardAll(){
 		return DAO.selectBoardAll();
 	}
 
-	//
-	public static BoardDTO selectBoardId(int board_id){
+	//보드 상세 조회
+	public BoardDTO selectBoardId(int board_id){
 		return DAO.selectBoardId(board_id);
 	}
-	public static int deleteBoard(int board_id) {
+	
+	//보드 삭제
+	public int deleteBoard(int board_id) {
 	    return DAO.deleteBoard(board_id);
 	}
 	
-	public static int updateBoard(BoardDTO board_id) {
+	//보드 수정
+	public int updateBoard(BoardDTO board_id) {
 		return DAO.updateBoard(board_id);
 	}
 }
