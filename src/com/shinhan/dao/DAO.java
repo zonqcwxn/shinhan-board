@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.shinhan.dto.BoardDTO;
+import com.shinhan.dto.CommonDTO;
 import com.shinhan.util.DBUtil;
 
 public class DAO {
@@ -59,7 +60,7 @@ public class DAO {
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbDisConnect(conn, st, rs);
-		} 
+		}
 		return dtoList;
 	}
 
@@ -83,6 +84,45 @@ public class DAO {
 			rs = st.executeQuery();
 			if (rs.next()) {
 				Dto = makeBoard(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.dbDisConnect(conn, st, rs);
+		}
+		return Dto;
+
+	}
+
+	public static CommonDTO selectboardId2(int bId) {
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		String sql = """
+				SELECT
+				    u.user_name,
+				    b.board_title,
+				    b.board_content,
+				    b.board_udtdate
+				FROM
+				    tbl_board b
+				JOIN
+				    tbl_user u
+				ON
+				    b.board_user_id = u.user_id
+				WHERE
+				    1=1
+				and
+				    b.board_id = ?
+				""";
+		CommonDTO Dto = null;
+		try {
+			conn = DBUtil.dbConnect();
+			st = conn.prepareStatement(sql);
+			st.setInt(1, bId);
+			rs = st.executeQuery();
+			if (rs.next()) {
+				Dto = makeCommon(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -203,4 +243,14 @@ public class DAO {
 		dto.setBoard_active(rs.getString("board_active"));
 		return dto;
 	}
+
+	private static CommonDTO makeCommon(ResultSet rs) throws SQLException {
+	    CommonDTO dto = new CommonDTO();
+	    dto.setUser_name(rs.getString("user_name"));
+	    dto.setBoard_title(rs.getString("board_title"));
+	    dto.setBoard_content(rs.getString("board_content"));
+	    dto.setBoard_udtdate(rs.getDate("board_udtdate"));
+	    return dto;
+	}
+
 }

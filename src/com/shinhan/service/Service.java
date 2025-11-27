@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.shinhan.dao.DAO;
 import com.shinhan.dto.BoardDTO;
+import com.shinhan.dto.CommonDTO;
 
 public class Service {
 	
@@ -27,5 +28,10 @@ public class Service {
 	
 	public static int updateboard(BoardDTO board_id) {
 		return DAO.updateboard(board_id);
+	}
+
+	public static CommonDTO selectboardId2(int id) {
+		// TODO Auto-generated method stub
+		return DAO.selectboardId2(id);
 	}
 }

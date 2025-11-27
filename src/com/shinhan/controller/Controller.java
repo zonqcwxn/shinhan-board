@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.shinhan.dao.DAO;
 import com.shinhan.dto.BoardDTO;
+import com.shinhan.dto.CommonDTO;
 import com.shinhan.service.Service;
 import com.shinhan.util.IOUtil;
 
@@ -73,7 +74,7 @@ public class Controller {
 
         int id = IOUtil.inputInt("상세조회할 글 ID 입력 >> ");
 
-        BoardDTO dto = Service.selectboardId(id);
+        CommonDTO dto = Service.selectboardId2(id);
 
         if (dto == null) {
             IOUtil.println("해당 글을 찾을 수 없습니다.");
@@ -82,11 +83,9 @@ public class Controller {
 
         // 상세 내용 출력
         IOUtil.println("=== 글 상세 ===");
-        IOUtil.println("번호: " + dto.getBoard_id());
         IOUtil.println("제목: " + dto.getBoard_title());
         IOUtil.println("내용: " + dto.getBoard_content());
-        IOUtil.println("작성자: " + dto.getBoard_user_id());
-        IOUtil.println("작성일: " + dto.getBoard_regdate());
+        IOUtil.println("작성자: " + dto.getUser_name());
         IOUtil.println("수정일: " + dto.getBoard_udtdate());
     }
 
