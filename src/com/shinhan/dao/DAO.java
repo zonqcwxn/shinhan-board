@@ -59,7 +59,7 @@ public class DAO {
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbDisConnect(conn, st, rs);
-		}
+		} 
 		return dtoList;
 	}
 
