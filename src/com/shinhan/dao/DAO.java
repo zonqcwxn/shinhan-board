@@ -11,7 +11,31 @@ import com.shinhan.dto.BoardDTO;
 import com.shinhan.util.DBUtil;
 
 public class DAO {
-	// 蹂대�� ���대� ��泥� 議고��
+	
+//	sql 작성 예시
+//	String sql = """
+//			UPDATE 
+//				TBL_BOARD
+//			SET 
+//				BOARD_ACTIVE = 'N'
+//			WHERE 1=1
+//			AND BOARD_ID =?
+//			AND BOARD_ACTIVE ='Y'
+//			""";
+
+	// 유저 테이블 전체 조회
+	/*
+	 * public static List<DTO> userselectAll() { Connection conn = null;
+	 * PreparedStatement st = null; ResultSet rs = null; String sql =
+	 * "select * from tbl_user"; List<DTO> dtolist = new ArrayList<DTO>(); try {
+	 * conn = DBUtil.dbConnect(); st = conn.prepareStatement(sql); rs =
+	 * st.executeQuery(); while (rs.next()) { DTO dto = makeuser(rs);
+	 * dtolist.add(dto); } } catch (SQLException e) { // TODO Auto-generated catch
+	 * block e.printStackTrace(); } finally { DBUtil.dbDisConnect(conn, st, rs); }
+	 * 
+	 * return dtolist; }
+	 */
+	//보드 테이블 전체 조회
 	public static List<BoardDTO> boardselectAll() {
 		Connection conn = null;
 		PreparedStatement st = null;
@@ -27,12 +51,10 @@ public class DAO {
 				dtolist.add(dto);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbDisConnect(conn, st, rs);
 		}
-
 		return dtolist;
 	}
 
@@ -55,7 +77,6 @@ public class DAO {
 				dto = makeboard(rs);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbDisConnect(conn, st, rs);
@@ -83,7 +104,6 @@ public class DAO {
 			st.setInt(3, dto.getBoard_user_id());
 			result = st.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbDisConnect(conn, st, null);
@@ -106,7 +126,6 @@ public class DAO {
 
 			result = st.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbDisConnect(conn, st, null);
