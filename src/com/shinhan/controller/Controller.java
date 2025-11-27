@@ -29,9 +29,10 @@ public class Controller {
         }
     }
 
+    
     // ====== C : 글 등록 ======
     // >> 등록 화면
-    private void createBoard() {
+    private void f_create() {
     	 IOUtil.println("=== 글 등록 ===");
 
     	    String title = IOUtil.inputString("제목 입력 >> ");
@@ -52,13 +53,11 @@ public class Controller {
     	    }
     }
 
+    
     // ====== R : 글 목록 조회 ======
     // >> 전체 리스트(제목, 작성자) >> 상세 내용
-    private void readBoard() {
-    	IOUtil.println("=== 글 목록 조회 ===");
-
-        List<BoardDTO> list = Service.boardselectAll();
-
+    private void f_selectList() {
+    	List<CommonDTO> boardList = new ArrayList<CommonDTO>();
         if (list.isEmpty()) {
             IOUtil.println("등록된 글이 없습니다.");
             return;
@@ -89,10 +88,15 @@ public class Controller {
         IOUtil.println("작성일: " + dto.getBoard_regdate());
         IOUtil.println("수정일: " + dto.getBoard_udtdate());
     }
+  
+     // ====== R : 글 상세 조회 ======
+    // >> 전체 리스트(제목, 작성자) >> 상세 내용
+    private void f_select() {
+    	List<CommonDTO> boardList = new ArrayList<CommonDTO>();
 
     // ====== U : 글 수정 ======
     // >> 전체 리스트 >> 인덱스 번호 선택
-    private void updateBoard() {
+    private void f_update() {
     	 IOUtil.println("=== 글 수정 ===");
 
     	    List<BoardDTO> list = Service.boardselectAll();
@@ -135,10 +139,11 @@ public class Controller {
     	        IOUtil.println("글 수정 실패!");
     	    }
     }
+    
 
     // ====== D : 글 삭제 ======
     // >> 전체 리스트 >> 상세 내용 >> 삭제
-    private void deleteBoard() {
+    private void f_delete() {
     	IOUtil.println("=== 글 삭제 ===");
 
         List<BoardDTO> list = Service.boardselectAll();
@@ -178,7 +183,7 @@ public class Controller {
             IOUtil.println("삭제 실패! 이미 삭제된 글일 수 있습니다.");
         }
     }
-
+//
     // 실행용 main
     public static void main(String[] args) {
         new Controller().start();
