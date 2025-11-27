@@ -18,7 +18,7 @@ public class Controller {
             switch (menu) {
                 case 1 -> f_create();  		// C
                 case 2 -> f_selectList();	// R
-                case 3 -> f_update();  	// U
+                case 3 -> f_update();  	// Uㄹㅇㄴ
                 case 4 -> f_delete();  	// D
                 case 0 -> {
                     IOUtil.println("프로그램을 종료합니다.");
@@ -29,17 +29,20 @@ public class Controller {
         }
     }
 
+    
     // ====== C : 글 등록 ======
     // >> 등록 화면
     private void f_create() {
 
     }
 
+    
     // ====== R : 글 목록 조회 ======
     // >> 전체 리스트(제목, 작성자) >> 상세 내용
     private void f_selectList() {
     	List<CommonDTO> boardList = new ArrayList<CommonDTO>();
     }
+    
     
     // ====== R : 글 상세 조회 ======
     // >> 전체 리스트(제목, 작성자) >> 상세 내용
@@ -54,6 +57,7 @@ public class Controller {
     	List<CommonDTO> boardList = new ArrayList<CommonDTO>();
         
     }
+    
 
     // ====== D : 글 삭제 ======
     // >> 전체 리스트 >> 상세 내용 >> 삭제
