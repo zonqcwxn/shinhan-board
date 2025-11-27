@@ -181,7 +181,7 @@ public class DAO {
 				board_udtdate,
 				board_user_id)
 				VALUES
-				(board_seq.NEXTVAL,
+				(seq_Board_id.NEXTVAL,
 				?, ?,
 				'Y', 0,
 				SYSDATE, SYSDATE, ?)
