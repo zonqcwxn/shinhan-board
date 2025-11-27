@@ -61,7 +61,7 @@ public class Controller {
     	List<CommonDTO> boardList = new ArrayList<CommonDTO>();
         
     }
-
+//
     // 실행용 main
     public static void main(String[] args) {
         new Controller().start();
