@@ -11,6 +11,18 @@ import com.shinhan.dto.BoardDTO;
 import com.shinhan.util.DBUtil;
 
 public class DAO {
+	
+//	sql 작성 예시
+//	String sql = """
+//			UPDATE 
+//				TBL_BOARD
+//			SET 
+//				BOARD_ACTIVE = 'N'
+//			WHERE 1=1
+//			AND BOARD_ID =?
+//			AND BOARD_ACTIVE ='Y'
+//			""";
+
 	// 유저 테이블 전체 조회
 	/*
 	 * public static List<DTO> userselectAll() { Connection conn = null;
@@ -39,12 +51,10 @@ public class DAO {
 				dtolist.add(dto);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbDisConnect(conn, st, rs);
 		}
-
 		return dtolist;
 	}
 	//유저 ID로 조회
@@ -78,7 +88,6 @@ public class DAO {
 				dto = makeboard(rs);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBUtil.dbDisConnect(conn, st, rs);
@@ -115,7 +124,6 @@ public class DAO {
 			
 			result = st.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			DBUtil.dbDisConnect(conn, st, null);
@@ -138,7 +146,6 @@ public class DAO {
 			
 			result = st.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			DBUtil.dbDisConnect(conn, st, null);
