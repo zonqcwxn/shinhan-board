@@ -72,7 +72,7 @@ public class DAO {
 					*
 				from
 					tbl_board
-				where board_user_id = ?
+				where board_id = ?
 				and board_active = 'Y'
 				""";
 		BoardDTO Dto = null;
