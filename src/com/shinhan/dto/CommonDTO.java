@@ -11,14 +11,14 @@ import lombok.ToString;
 @Getter @Setter
 @NoArgsConstructor
 public class CommonDTO {
-	Integer user_id;
-	String user_name;
+	private Integer user_id;
+	private String user_name;
 	
-	Integer board_id;
-	String board_title;
-	String board_content;
-	Date board_udtdate;
+	private Integer board_id;
+	private String board_title;
+	private String board_content;
+	private Date board_udtdate;
 	
-	Integer comment_id;
-	String comment_content;
+	private Integer comment_id;
+	private String comment_content;
 }
