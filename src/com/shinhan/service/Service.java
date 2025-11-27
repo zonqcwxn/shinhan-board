@@ -11,7 +11,6 @@ public class Service {
 //	public static void insertBoardService() {
 //		return DAO.insertboard();
 //	}
-	
 	/*
 	 * public static List<DTO> userselectAll(){ return DAO.userselectAll(); }
 	 */

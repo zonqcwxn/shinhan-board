@@ -22,7 +22,7 @@ public class DAO {
 //			AND BOARD_ID =?
 //			AND BOARD_ACTIVE ='Y'
 //			""";
-	
+
 	// 유저 테이블 전체 조회
 	/*
 	 * public static List<DTO> userselectAll() { Connection conn = null;
