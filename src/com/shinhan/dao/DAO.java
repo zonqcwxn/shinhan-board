@@ -36,7 +36,7 @@ public class DAO {
 	 * return dtolist; }
 	 */
 	//보드 테이블 전체 조회
-	public static List<BoardDTO> boardselectAll() {
+	public static List<BoardDTO> selectBoardAll() {
 		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -63,7 +63,8 @@ public class DAO {
 		return dtoList;
 	}
 
-	public static BoardDTO selectboardId(int bId) {
+	// 蹂대�� ID濡� 議고��
+	public static BoardDTO selectBoardId(int bId) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		ResultSet rs = null;
@@ -82,7 +83,7 @@ public class DAO {
 			st.setInt(1, bId);
 			rs = st.executeQuery();
 			if (rs.next()) {
-				Dto = makeBoard(rs);
+				dto = makeBoard(rs);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -93,7 +94,7 @@ public class DAO {
 
 	}
 
-	public static int insertboard(BoardDTO dto) {
+	public static int insertBoard(BoardDTO dto) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = """
@@ -132,7 +133,7 @@ public class DAO {
 		return result;
 	}
 
-	public static int updateboard(BoardDTO dto) {
+	public static int updateBoard(BoardDTO dto) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = """
@@ -162,7 +163,7 @@ public class DAO {
 		return result;
 	}
 
-	public static int deleteboard(int board_id) {
+	public static int deleteBoard(int board_id) {
 		Connection conn = null;
 		PreparedStatement st = null;
 		String sql = """
